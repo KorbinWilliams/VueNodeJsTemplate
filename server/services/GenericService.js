@@ -1,10 +1,10 @@
 import mongoose from "mongoose"
-import Board from "../models/Board"
+import Generic from "../models/Generic"
 import ApiError from "../utils/ApiError"
 
-const _repository = mongoose.model('Board', Board)
+const _repository = mongoose.model('Generic', Generic)
 
-class BoardService {
+class GenericService {
   async getAll(userId) {
     return await _repository.find({ authorId: userId })
   }
@@ -12,7 +12,7 @@ class BoardService {
   async getById(id, userId) {
     let data = await _repository.findOne({ _id: id, authorId: userId })
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this board", 400)
+      throw new ApiError("Invalid ID or you do not own this generic", 400)
     }
     return data
   }
@@ -25,7 +25,7 @@ class BoardService {
   async edit(id, userId, update) {
     let data = await _repository.findOneAndUpdate({ _id: id, authorId: userId }, update, { new: true })
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this board", 400);
+      throw new ApiError("Invalid ID or you do not own this generic", 400);
     }
     return data;
   }
@@ -33,12 +33,12 @@ class BoardService {
   async delete(id, userId) {
     let data = await _repository.findOneAndRemove({ _id: id, authorId: userId });
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this board", 400);
+      throw new ApiError("Invalid ID or you do not own this generic", 400);
     }
   }
 
 }
 
 
-const _boardService = new BoardService()
-export default _boardService
+const _genericService = new GenericService()
+export default _genericService
