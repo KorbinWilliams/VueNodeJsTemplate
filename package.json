@@ -1,7 +1,7 @@
 {
-    "name": "kanban",
+    "name": "vuewithnodejstemplate",
     "version": "1.0.0",
-    "description": "Kanban a tool for organizing projects",
+    "description": "template",
     "main": "index.js",
     "scripts": {
         "debug": "node index.js",
